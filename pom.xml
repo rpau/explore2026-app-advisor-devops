@@ -15,9 +15,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Family Cash Cards</name>
 	<description>Manage Family Cash Cards</description>
-
 	<properties>
-		<java.version>17</java.version>
+	     <maven.compiler.source>17</maven.compiler.source>
+		 <maven.compiler.target>17</maven.compiler.target>
 	</properties>
 
 	<dependencies>
@@ -77,12 +77,10 @@
 	<build>
 
 		<plugins>
-
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
 		</plugins>
 
 	</build>
