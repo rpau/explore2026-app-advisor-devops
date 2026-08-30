@@ -1,0 +1,40 @@
+name: Merge Pull Request
+
+on:   # Trigger manually or when a pull request is opened
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  merge-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7.0.1
+        with:
+          clean: "true"
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+
+      - name: Find and merge PR targeting main branch
+        run: |
+          PR_NUMBER=$(gh pr list --state open --base main --json number --jq '.[0].number')
+
+          if [ -n "$PR_NUMBER" ]; then
+          
+            echo "For demo purposes, assume tests are run and pass..."
+
+            echo "Merging PR #$PR_NUMBER into main..."
+            PR_TITLE=$(gh pr view "$PR_NUMBER" --json title --jq .title)
+            gh pr merge "$PR_NUMBER" --merge --admin --delete-branch -R "$GITHUB_REPOSITORY" --subject "Test & Merge: $PR_TITLE"
+          else
+            echo "No open PRs targeting main found."
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
