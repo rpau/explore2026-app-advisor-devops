@@ -8,6 +8,11 @@ on:
     workflows: ["Merge Pull Request"]
     types: [completed] # Run after merge workflow completes.
 
+
+env:
+   SPRING_ADVISOR_MAPPING_CUSTOM_0_FILEPATH: ".advisor/mappings/spring-boot.json"
+   SPRING_ADVISOR_MAPPING_CUSTOM_0_MERGE_STRATEGY: "override"
+
 jobs:
   run-app-advisor:
     runs-on: ubuntu-latest
