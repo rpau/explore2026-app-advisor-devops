@@ -20,3 +20,6 @@ spring:
   kafka:
     streams:
       cache-max-size-buffering: 100
+logging:
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS
