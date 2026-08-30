@@ -16,7 +16,6 @@
 	<name>Family Cash Cards</name>
 	<description>Manage Family Cash Cards</description>
 	<properties>
-        <maven.compiler.release>17</maven.compiler.release>
 	</properties>
 
 	<dependencies>
