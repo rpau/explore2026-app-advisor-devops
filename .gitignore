@@ -44,5 +44,3 @@ out/
 ### VS Code ###
 .vscode/
 
-### Spring Application Advisor
-.advisor
