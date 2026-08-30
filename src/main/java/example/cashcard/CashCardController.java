@@ -13,7 +13,7 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cashcards")
+@RequestMapping({"/cashcards", "/cashcards/"})
 public class CashCardController {
     private final CashCardRepository cashCardRepository;
 
@@ -21,7 +21,7 @@ public class CashCardController {
         this.cashCardRepository = cashCardRepository;
     }
 
-    @GetMapping("/{requestedId}")
+    @GetMapping({"/{requestedId}", "/{requestedId}/"})
     public ResponseEntity<CashCard> findById(@PathVariable Long requestedId, Principal principal) {
         CashCard cashCard = findCashCard(requestedId, principal);
         if (cashCard != null) {
@@ -52,7 +52,7 @@ public class CashCardController {
         return ResponseEntity.ok(page.getContent());
     }
 
-    @PutMapping("/{requestedId}")
+    @PutMapping({"/{requestedId}", "/{requestedId}/"})
     private ResponseEntity<Void> putCashCard(@PathVariable Long requestedId, @RequestBody CashCard cashCardUpdate, Principal principal) {
         CashCard cashCard = findCashCard(requestedId, principal);
         if (cashCard != null) {
@@ -63,7 +63,7 @@ public class CashCardController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping({"/{id}", "/{id}/"})
     private ResponseEntity<Void> deleteCashCard(@PathVariable Long id, Principal principal) {
         if (cashCardRepository.existsByIdAndOwner(id, principal.getName())) {
             cashCardRepository.deleteById(id);
