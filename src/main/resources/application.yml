@@ -20,6 +20,11 @@ spring:
   kafka:
     streams:
       state-store-cache-max-size: 100
+  jackson:
+    use-jackson2-defaults: true
+  http:
+    converters:
+      preferred-json-mapper: jackson2
 logging:
   pattern:
     dateformat: yyyy-MM-dd HH:mm:ss.SSS
