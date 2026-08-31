@@ -41,6 +41,8 @@ jobs:
           servers: '[{"id": "tanzu-spring-release", "username": "${{ secrets.BC_REG_USER }}", "password": "${{ secrets.BC_REG_TOKEN }}"}]'
           repositories: '[{"id":"tanzu-spring-release","name":"Spring Enterprise Supported Releases","url":"https://packages.broadcom.com/artifactory/spring-enterprise","snapshots":{"enabled":false}}]'
 
+      - name: Extract Java version
+        run: ./mvnw -v -B
       - name: Install advisor and trivy CLIs
         env:
           BC_REG_TOKEN: ${{ secrets.BC_REG_TOKEN }}
